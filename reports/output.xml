@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1 (Python 3.12.6 on win32)" generated="2024-09-13T22:18:35.789782" rpa="false" schemaversion="5">
+<suite id="s1" name="TestSuites" source="E:\Learning\PycharmProjects\RobotFramework\TestSuites">
+<suite id="s1-s1" name="Testcase" source="E:\Learning\PycharmProjects\RobotFramework\TestSuites\Testcase.robot">
+<test id="s1-s1-t1" name="Automate the Amazon shopping page" line="8">
+<kw name="Open Browser with Amazon URL">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-09-13T22:18:36.440238" level="INFO">Opening browser 'chrome' to base url 'https://www.amazon.in/'.</msg>
+<arg>https://www.amazon.in/</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-09-13T22:18:36.440238" elapsed="6.613446"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-09-13T22:18:43.053684" elapsed="0.174710"/>
+</kw>
+<doc>Opens the Amazon URL</doc>
+<status status="PASS" start="2024-09-13T22:18:36.440238" elapsed="6.788156"/>
+</kw>
+<kw name="Search for the Product">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-09-13T22:18:43.294231" level="INFO">Typing text 'soundbars' into text field 'xpath=//input[@id='twotabsearchtextbox']'.</msg>
+<arg>xpath=//input[@id='twotabsearchtextbox']</arg>
+<arg>soundbars</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-13T22:18:43.293230" elapsed="0.531669"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2024-09-13T22:18:44.213609" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Elementsearched.png"&gt;&lt;img src="Elementsearched.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>Elementsearched.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2024-09-13T22:18:43.824899" elapsed="0.388710"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>//div[@class='left-pane-results-container']</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-09-13T22:18:44.214260" elapsed="0.060907"/>
+</kw>
+<kw name="Wait and Click">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${Xpath}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-09-13T22:18:44.275167" elapsed="0.022642"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-13T22:18:44.297809" level="INFO">Clicking element '(//div[contains(text(),'soundbars')])[1]'.</msg>
+<arg>${Xpath}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-13T22:18:44.297809" elapsed="3.656371"/>
+</kw>
+<arg>(//div[contains(text(),'soundbars')])[1]</arg>
+<status status="PASS" start="2024-09-13T22:18:44.275167" elapsed="3.679013"/>
+</kw>
+<status status="PASS" start="2024-09-13T22:18:43.292097" elapsed="4.662083"/>
+</kw>
+<kw name="filter product according to the user">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>//span[contains(text(),'boAt')]/preceding-sibling::div/label/i</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-09-13T22:18:47.954180" elapsed="0.039775"/>
+</kw>
+<kw name="Select Checkbox" owner="SeleniumLibrary">
+<msg time="2024-09-13T22:18:47.995073" level="INFO">Selecting checkbox '//span[contains(text(),'boAt')]/preceding-sibling::div/label/i'.</msg>
+<msg time="2024-09-13T22:18:48.333068" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-10.png"&gt;&lt;img src="selenium-screenshot-10.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2024-09-13T22:18:48.333068" level="FAIL">Checkbox with locator '//span[contains(text(),'boAt')]/preceding-sibling::div/label/i' not found.</msg>
+<arg>//span[contains(text(),'boAt')]/preceding-sibling::div/label/i</arg>
+<doc>Selects the checkbox identified by ``locator``.</doc>
+<status status="FAIL" start="2024-09-13T22:18:47.993955" elapsed="0.347589">Checkbox with locator '//span[contains(text(),'boAt')]/preceding-sibling::div/label/i' not found.</status>
+</kw>
+<status status="FAIL" start="2024-09-13T22:18:47.954180" elapsed="0.387364">Checkbox with locator '//span[contains(text(),'boAt')]/preceding-sibling::div/label/i' not found.</status>
+</kw>
+<doc>Automate the Amazon shopping page and places Order</doc>
+<tag>TC01</tag>
+<status status="FAIL" start="2024-09-13T22:18:36.437592" elapsed="11.914100">Checkbox with locator '//span[contains(text(),'boAt')]/preceding-sibling::div/label/i' not found.</status>
+</test>
+<status status="FAIL" start="2024-09-13T22:18:35.890174" elapsed="12.461518"/>
+</suite>
+<status status="FAIL" start="2024-09-13T22:18:35.805126" elapsed="12.546566"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">TC01</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="TestSuites">TestSuites</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="Testcase">TestSuites.Testcase</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-09-13T22:18:35.786761" level="ERROR">Error in file 'E:\Learning\PycharmProjects\RobotFramework\TestSuites\Testcase.robot' on line 22: Creating keyword '' failed: User keyword name cannot be empty.</msg>
+</errors>
+</robot>
