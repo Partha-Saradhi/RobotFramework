@@ -19,10 +19,14 @@ Search for the Product
 
 filter product according to the user
     Wait Until Page Contains Element    //span[contains(text(),'boAt')]/preceding-sibling::div/label/i
-    Select Checkbox    //span[contains(text(),'boAt')]/preceding-sibling::div/label/i
+    ${ele}    Get Webelement      //span[contains(text(),'ZEBRONICS')]/preceding-sibling::div/label/input
+    Execute Javascript    arguments[0].click();     ARGUMENTS    ${ele}
 
+    Select Product as per the userdata
+    [Arguments]
 
 Wait and Click
     [Arguments]    ${Xpath}
     Wait Until Page Contains Element    ${Xpath}
     Click Element    ${Xpath}
+    

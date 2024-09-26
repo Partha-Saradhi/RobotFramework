@@ -8,6 +8,7 @@ Automate the Amazon shopping page
     Open Browser with Amazon URL
     Search for the Product
     filter product according to the user
+    Select Product as per the userdata
 
 
 
