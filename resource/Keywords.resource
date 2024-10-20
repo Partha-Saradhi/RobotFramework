@@ -4,9 +4,9 @@ Resource    Resource.resource
 
 *** Variables ***
 
-${DefaultWaitTime}        3
 ${ChromedriverPath}    E:\Learning\PycharmProjects\RobotFramework\config\chromedriver
-${FlipkartURL}        https://www.flipkart.com/
+${AmazonURL}        https://www.amazon.in/
+
 *** Keywords ***
 
 Wait and Click
@@ -21,46 +21,60 @@ Wait and Input
 
 setup driver and path for chrome and open URL
     [Documentation]    setups the executable path and assigns the URL
-    [Arguments]    ${URL}=${FlipkartURL}    ${Driver path}=${ChromedriverPath}
+    [Arguments]    ${URL}=${AmazonURL}    ${Driver path}=${ChromedriverPath}
     Open Browser   browser=Chrome    options= add_experimental_option("detach",True)
     Go To    ${URL}
     Maximize Browser Window
 
 Open Browser with Amazon URL
     [Documentation]    Opens the Amazon URL
-    [Arguments]    ${URL}=${FlipkartURL}
+    [Arguments]    ${URL}=${AmazonURL}
     setup driver and path for chrome and open URL    ${URL}
 
-Login to the Flipkart
-    [Documentation]    Opens the Amazon URL
-    #[Arguments]    ${Username}    ${Password}
-    Wait And Click    //a[@title='Login']/span
-    Input Text    //input[@class='r4vIwl BV+Dqf']    8247649002
-    Wait and Click    //button[contains(text(),'Request OTP')]
-    Sleep    20
 
-Search for the Product
-    Input Text   xpath=//input[@title='Search for Products, Brands and More']        Apple iPhone 13 (128GB) - Midnight
-    Capture Page Screenshot    Elementsearched.png
-    Wait Until Page Contains Element    //div[@class='left-pane-results-container']
-    Wait and Click        (//div[contains(text(),'apple iphone 13 128gb - midnight')])[1]
-
-filter product according to the user
+Search for non existing Products
+    [Documentation]    Searches for the products  that does not contains
     Set Selenium Implicit Wait    10
-    Wait Until Page Contains Element    ${StorageSizeLoc}
-    Scroll Element Into View            ${StorageSizeLoc}
-    ${ele}    Get Webelement            ${StorageSizeLoc}
-    Execute Javascript    arguments[0].click();     ARGUMENTS    ${ele}
-    Wait And Click    //span[contains(text(),'Apple iPhone 13 (256GB) - Midnight')]
-    Get Window Titles
-    ${handles}=    Get Window Handles
-    Switch Window	${handles}[1]
-    Wait Until Page Contains Element    //h1[@id='title']/span[contains(text(),'Apple iPhone 13 (256GB) - Midnight')]
-    Capture Page Screenshot    Products seen.png
-    ${FetchPrice}    Get Element Text    //div[@id='corePriceDisplay_desktop_feature_div']/div/span/span/span[@class='a-price-whole']
+    Input Text    ${SearchBox_Loc}     ;akjhvesgjdgvh.
+    Wait And Click    ${SearchButton_Loc}
+    Page Should Contain    No results for
+    Capture Page Screenshot    No results found.png
 
 
-    
+Search for the existing Product
+    [Documentation]    Searches for the Product
+    Set Selenium Implicit Wait    10
+    Input Text   ${SearchBox_Loc}        Laptop
+    Wait Until Page Contains Element    //div[@class='left-pane-results-container']
+    Wait And Click    ${SearchButton_Loc}
+    Capture Page Screenshot    Elementsearched.png
+
+
+Validate the Product and add to cart
+    [Documentation]  Validates the Product and add to cart
+    Set Selenium Implicit Wait    10
+    ${All_res_Value_Loc}    Get Text    ${AllResults_Loc}
+    ${All_res_Value_str}    Convert To String    ${All_res_Value_Loc}
+    Wait And Click    ${AllResults_Loc}
+    ${WindowHandles}    Get Window Handles
+    ${Product_Window}    Get From List    ${WindowHandles}     1
+    Switch Window    ${Product_Window}
+    ${Product_Value_Loc}    Get Text    ${ProductLoc}
+    ${Product_Value_str}    Convert To String    ${Product_Value_Loc}
+    Capture Page Screenshot    Product page.png
+    Run Keyword If    '${All_res_Value_str}'=='${Product_Value_str}'    Add products to the cart and delete
+
+
+Add products to the cart and delete
+    [Documentation]    Add products to the cart and delete
+    Set Selenium Implicit Wait    10
+    Wait And Click    ${AddToCartButton_Loc}
+    Wait And Click    ${ViewCart_Loc}
+    Capture Page Screenshot    Added to cart.png
+    Wait And Click    ${ViewCart_Loc}
+    Wait And Click    ${QtyDDValue_Loc}
+    Capture Page Screenshot    Deleted from cart.png
+
 
 Download and verify the bill
     [Documentation]    Downloads and verify the bill for older orders
@@ -74,3 +88,16 @@ Download and verify the bill
 
 
     
+filter product according to the user
+    Set Selenium Implicit Wait    10
+    Wait Until Page Contains Element    ${StorageSizeLoc}
+    Scroll Element Into View            ${StorageSizeLoc}
+    ${ele}    Get Webelement            ${StorageSizeLoc}
+    Execute Javascript    arguments[0].click();     ARGUMENTS    ${ele}
+    Wait And Click    //span[contains(text(),'Apple iPhone 13 (256GB) - Midnight')]
+    Get Window Titles
+    ${handles}=    Get Window Handles
+    Switch Window	${handles}[1]
+    Wait Until Page Contains Element    //h1[@id='title']/span[contains(text(),'Apple iPhone 13 (256GB) - Midnight')]
+    Capture Page Screenshot    Products seen.png
+    ${FetchPrice}    Get Element Text    //div[@id='corePriceDisplay_desktop_feature_div']/div/span/span/span[@class='a-price-whole']
