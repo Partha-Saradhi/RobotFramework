@@ -19,12 +19,7 @@ Wait and Input
     Wait Until Page Contains Element    ${Xpath}
     Input Text    ${Xpath}    ${text}
 
-setup driver and path for chrome and open URL
-    [Documentation]    setups the executable path and assigns the URL
-    [Arguments]    ${URL}=${AmazonURL}    ${Driver path}=${ChromedriverPath}
-    Open Browser   browser=Chrome    options= add_experimental_option("detach",True)
-    Go To    ${URL}
-    Maximize Browser Window
+
 
 Open Browser with Amazon URL
     [Documentation]    Opens the Amazon URL
@@ -87,7 +82,6 @@ Download and verify the bill
         Log To Console   ${text}
 
 
-    
 filter product according to the user
     Set Selenium Implicit Wait    10
     Wait Until Page Contains Element    ${StorageSizeLoc}
