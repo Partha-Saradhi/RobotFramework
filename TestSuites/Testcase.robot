@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    ../resource/Resource.resource
+
 *** Test Cases ***
 Automate the Amazon shopping page
     [Documentation]  Automate the Amazon shopping page and places Order
